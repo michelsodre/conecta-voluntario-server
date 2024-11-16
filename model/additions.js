@@ -14,6 +14,7 @@ const additionsSchema = new Schema({
   },
   status: {
     type: String,
+    default: "Em análise",
   },
 });
 
