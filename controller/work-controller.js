@@ -16,12 +16,6 @@ const addNewWork = async (req, res) => {
     address,
   });
 
-  //   try {
-  //     await newVoluntary.save();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
   try {
     const session = await mongoose.startSession();
     session.startTransaction();

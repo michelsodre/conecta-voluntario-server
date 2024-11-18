@@ -13,12 +13,6 @@ const addNewOng = async (req, res) => {
     description,
   });
 
-  //   try {
-  //     await newOng.save();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
   try {
     const session = await mongoose.startSession();
     session.startTransaction();

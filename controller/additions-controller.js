@@ -13,12 +13,6 @@ const addNewAddition = async (req, res) => {
     submit_date: currentDate,
   });
 
-  //   try {
-  //     await newAddition.save();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
   try {
     const session = await mongoose.startSession();
     session.startTransaction();

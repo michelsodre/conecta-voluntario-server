@@ -13,12 +13,6 @@ const addNewVoluntary = async (req, res) => {
     email,
   });
 
-  //   try {
-  //     await newVoluntary.save();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
   try {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -54,7 +48,7 @@ const updateVoluntary = async (req, res) => {
   let currentVoluntaryUpdate;
 
   try {
-    currentVoluntaryUpdate = await Ong.findByIdAndUpdate(id, {
+    currentVoluntaryUpdate = await Voluntary.findByIdAndUpdate(id, {
       name,
       birth_date,
       phone,
