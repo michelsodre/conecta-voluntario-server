@@ -14,6 +14,9 @@ const voluntarySchema = new Schema({
   email: {
     type: String,
   },
+  password: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("voluntary", voluntarySchema);

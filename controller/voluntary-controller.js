@@ -4,13 +4,14 @@ const Voluntary = require("../model/voluntary");
 //CRUD
 //CREATE Voluntário
 const addNewVoluntary = async (req, res) => {
-  const { name, birth_date, phone, email } = req.body;
+  const { name, birth_date, phone, email, password } = req.body;
 
   const newVoluntary = new Voluntary({
     name,
     birth_date,
     phone,
     email,
+    password,
   });
 
   try {
@@ -40,11 +41,29 @@ const fetchListOfVoluntary = async (req, res) => {
 
   return res.status(200).json({ voluntaryList });
 };
+//Buscar UM voluntário
+const fetchOneVoluntary = async (req, res) => {
+  const { email } = req.query;
+  let oneVoluntary;
+
+  try {
+    oneVoluntary = await Voluntary.findOne({ email });
+    console.log(oneVoluntary);
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (!oneVoluntary) {
+    return res.status(404).json({ message: "Sem Voluntários" });
+  }
+
+  return res.status(200).json({ oneVoluntary });
+};
 
 //UPDATE editar Voluntário
 const updateVoluntary = async (req, res) => {
   const id = req.params.id;
-  const { name, birth_date, phone, email } = req.body;
+  const { name, birth_date, phone, email, password } = req.body;
   let currentVoluntaryUpdate;
 
   try {
@@ -53,6 +72,7 @@ const updateVoluntary = async (req, res) => {
       birth_date,
       phone,
       email,
+      password,
     });
   } catch (error) {
     console.log(error);
@@ -88,6 +108,7 @@ const deleteVoluntary = async (req, res) => {
 module.exports = {
   addNewVoluntary,
   fetchListOfVoluntary,
+  fetchOneVoluntary,
   updateVoluntary,
   deleteVoluntary,
 };

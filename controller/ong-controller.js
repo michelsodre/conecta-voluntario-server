@@ -4,13 +4,14 @@ const Ong = require("../model/ong");
 //CRUD
 //CREATE Ong
 const addNewOng = async (req, res) => {
-  const { name, phone, email, description } = req.body;
+  const { name, phone, email, description, password } = req.body;
 
   const newOng = new Ong({
     name,
     phone,
     email,
     description,
+    password,
   });
 
   try {
@@ -41,10 +42,28 @@ const fetchListOfOngs = async (req, res) => {
   return res.status(200).json({ ongList });
 };
 
+const fetchOneOngs = async (req, res) => {
+  const { email } = req.query;
+  let oneOng;
+
+  try {
+    oneOng = await Ong.findOne({ email });
+    console.log(oneOng);
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (!oneOng) {
+    return res.status(404).json({ message: "Sem ONGs" });
+  }
+
+  return res.status(200).json({ oneOng });
+};
+
 //UPDATE editar Ong
 const updateOng = async (req, res) => {
   const id = req.params.id;
-  const { name, phone, email, description } = req.body;
+  const { name, phone, email, description, password } = req.body;
   let currentOngUpdate;
 
   try {
@@ -53,6 +72,7 @@ const updateOng = async (req, res) => {
       phone,
       email,
       description,
+      password,
     });
   } catch (error) {
     console.log(error);
@@ -88,6 +108,7 @@ const deleteOng = async (req, res) => {
 module.exports = {
   addNewOng,
   fetchListOfOngs,
+  fetchOneOngs,
   updateOng,
   deleteOng,
 };

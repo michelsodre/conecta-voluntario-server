@@ -14,6 +14,9 @@ const ongSchema = new Schema({
   description: {
     type: String,
   },
+  password: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("ong", ongSchema);
