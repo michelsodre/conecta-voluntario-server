@@ -43,6 +43,21 @@ const fetchListOfWork = async (req, res) => {
 
   return res.status(200).json({ workList });
 };
+//buscar uma vaga
+const fetchAWork = async (req, res) => {
+  let aWork;
+  const { _id } = req.query;
+  try {
+    aWork = await Work.findOne({ _id });
+    console.log(aWork);
+  } catch (error) {
+    console.log(error);
+  }
+  if (!aWork) {
+    return res.status(404).json({ message: "Não existe" });
+  }
+  return res.status(200).json({ aWork });
+};
 
 //UPDATE editar Vaga
 const updateWork = async (req, res) => {
@@ -91,6 +106,7 @@ const deleteWork = async (req, res) => {
 module.exports = {
   addNewWork,
   fetchListOfWork,
+  fetchAWork,
   updateWork,
   deleteWork,
 };

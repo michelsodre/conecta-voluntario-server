@@ -4,6 +4,7 @@ const workRouter = express.Router();
 const {
   addNewWork,
   fetchListOfWork,
+  fetchAWork,
   updateWork,
   deleteWork,
 } = require("../controller/work-controller");
@@ -11,6 +12,7 @@ const {
 //CRUD Route Vagas
 workRouter.post("/add", addNewWork);
 workRouter.get("/", fetchListOfWork);
+workRouter.get("/awork", fetchAWork);
 workRouter.put("/update/:id", updateWork);
 workRouter.delete("/delete/:id", deleteWork);
 
