@@ -5,6 +5,7 @@ const {
   addNewOng,
   fetchListOfOngs,
   fetchOneOngs,
+  fetchOngID,
   updateOng,
   deleteOng,
 } = require("../controller/ong-controller");
@@ -13,6 +14,7 @@ const {
 ongRouter.post("/add", addNewOng);
 ongRouter.get("/", fetchListOfOngs);
 ongRouter.get("/oneong", fetchOneOngs);
+ongRouter.get("/ongid", fetchOngID);
 ongRouter.put("/update/:id", updateOng);
 ongRouter.delete("/delete/:id", deleteOng);
 

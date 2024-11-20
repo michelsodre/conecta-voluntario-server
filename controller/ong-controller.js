@@ -41,13 +41,30 @@ const fetchListOfOngs = async (req, res) => {
 
   return res.status(200).json({ ongList });
 };
-
+//Buscar Uma Ongs
 const fetchOneOngs = async (req, res) => {
   const { email } = req.query;
   let oneOng;
 
   try {
     oneOng = await Ong.findOne({ email });
+    console.log(oneOng);
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (!oneOng) {
+    return res.status(404).json({ message: "Sem ONGs" });
+  }
+
+  return res.status(200).json({ oneOng });
+};
+const fetchOngID = async (req, res) => {
+  const { _id } = req.query;
+  let oneOng;
+
+  try {
+    oneOng = await Ong.findOne({ _id });
     console.log(oneOng);
   } catch (error) {
     console.log(error);
@@ -109,6 +126,7 @@ module.exports = {
   addNewOng,
   fetchListOfOngs,
   fetchOneOngs,
+  fetchOngID,
   updateOng,
   deleteOng,
 };
