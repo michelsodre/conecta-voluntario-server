@@ -84,13 +84,17 @@ const updateOng = async (req, res) => {
   let currentOngUpdate;
 
   try {
-    currentOngUpdate = await Ong.findByIdAndUpdate(id, {
-      name,
-      phone,
-      email,
-      description,
-      password,
-    });
+    currentOngUpdate = await Ong.findByIdAndUpdate(
+      id,
+      {
+        name,
+        phone,
+        email,
+        description,
+        password,
+      },
+      { new: true }
+    );
   } catch (error) {
     console.log(error);
     return res
