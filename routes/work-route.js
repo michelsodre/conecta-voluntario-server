@@ -5,6 +5,7 @@ const {
   addNewWork,
   fetchListOfWork,
   fetchAWork,
+  fetchManyWork,
   updateWork,
   deleteWork,
 } = require("../controller/work-controller");
@@ -13,6 +14,7 @@ const {
 workRouter.post("/add", addNewWork);
 workRouter.get("/", fetchListOfWork);
 workRouter.get("/awork", fetchAWork);
+workRouter.get("/ongworks", fetchManyWork);
 workRouter.put("/update/:id", updateWork);
 workRouter.delete("/delete/:id", deleteWork);
 

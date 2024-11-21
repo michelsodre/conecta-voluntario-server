@@ -8,6 +8,7 @@ const {
   updateAddition,
   deleteAddition,
   deleteAllAddition,
+  deleteAllAdditionWork,
 } = require("../controller/additions-controller");
 
 //CRUD Route Inscrição
@@ -17,5 +18,6 @@ additionRouter.get("/myadditions", fetchVoluntaryAdditions);
 additionRouter.put("/update/:id", updateAddition);
 additionRouter.delete("/delete/:id", deleteAddition);
 additionRouter.delete("/deletemany/:id_voluntary", deleteAllAddition);
+additionRouter.delete("/deletemanywork/:id_work", deleteAllAdditionWork);
 //export
 module.exports = additionRouter;

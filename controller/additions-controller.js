@@ -114,6 +114,24 @@ const deleteAllAddition = async (req, res) => {
   }
 };
 
+const deleteAllAdditionWork = async (req, res) => {
+  const id_work = req.params.id_work;
+  try {
+    const result = await Addition.deleteMany({
+      id_work: id_work,
+    });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Nada encontrado" });
+    }
+    return res.status(200).json({ message: "Deletado" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Não foi possível deletar. Tente novamente" });
+  }
+};
+
 module.exports = {
   addNewAddition,
   fetchListOfAdditions,
@@ -121,4 +139,5 @@ module.exports = {
   updateAddition,
   deleteAddition,
   deleteAllAddition,
+  deleteAllAdditionWork,
 };

@@ -59,6 +59,21 @@ const fetchAWork = async (req, res) => {
   return res.status(200).json({ aWork });
 };
 
+const fetchManyWork = async (req, res) => {
+  let works;
+  const { id_ong } = req.query;
+  try {
+    works = await Work.find({ id_ong });
+    console.log(works);
+  } catch (error) {
+    console.log(error);
+  }
+  if (!works) {
+    res.status(404).json({ message: "Não existem vagas" });
+  }
+  return res.status(200).json({ works });
+};
+
 //UPDATE editar Vaga
 const updateWork = async (req, res) => {
   const id = req.params.id;
@@ -107,6 +122,7 @@ module.exports = {
   addNewWork,
   fetchListOfWork,
   fetchAWork,
+  fetchManyWork,
   updateWork,
   deleteWork,
 };
