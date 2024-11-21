@@ -67,13 +67,17 @@ const updateVoluntary = async (req, res) => {
   let currentVoluntaryUpdate;
 
   try {
-    currentVoluntaryUpdate = await Voluntary.findByIdAndUpdate(id, {
-      name,
-      birth_date,
-      phone,
-      email,
-      password,
-    });
+    currentVoluntaryUpdate = await Voluntary.findByIdAndUpdate(
+      id,
+      {
+        name,
+        birth_date,
+        phone,
+        email,
+        password,
+      },
+      { new: true }
+    );
   } catch (error) {
     console.log(error);
     return res
