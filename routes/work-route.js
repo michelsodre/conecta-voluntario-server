@@ -16,7 +16,7 @@ workRouter.get("/", fetchListOfWork);
 workRouter.get("/awork", fetchAWork);
 workRouter.get("/ongworks", fetchManyWork);
 workRouter.put("/update/:id", updateWork);
-workRouter.delete("/delete/:id", deleteWork);
+workRouter.delete("/delete/:_id", deleteWork);
 
 //export
 module.exports = workRouter;

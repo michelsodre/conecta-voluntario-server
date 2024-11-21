@@ -102,10 +102,10 @@ const updateWork = async (req, res) => {
 
 //DELETE deletar Vaga
 const deleteWork = async (req, res) => {
-  const id = req.params.id;
+  const _id = req.params._id;
 
   try {
-    const findCurrentWork = await Work.findByIdAndDelete(id);
+    const findCurrentWork = await Work.findByIdAndDelete(_id);
     if (!findCurrentWork) {
       return res.status(404).json({ message: "Vaga não encontrada" });
     }
