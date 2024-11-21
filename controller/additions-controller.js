@@ -4,7 +4,7 @@ const Addition = require("../model/additions");
 //CRUD
 //CREATE addition ou incrição na vaga
 const addNewAddition = async (req, res) => {
-  const { id_work, id_voluntary } = req.body;
+  const { id_work, id_voluntary } = req.query;
   const currentDate = new Date();
 
   const newAddition = new Addition({
@@ -95,10 +95,30 @@ const deleteAddition = async (req, res) => {
   }
 };
 
+const deleteAllAddition = async (req, res) => {
+  const id_voluntary = req.params.id_voluntary;
+
+  try {
+    const result = await Addition.deleteMany({
+      id_voluntary: id_voluntary,
+    });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "Nada encontrado" });
+    }
+    return res.status(200).json({ message: "Deletado" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Não foi possível deletar. Tente novamente." });
+  }
+};
+
 module.exports = {
   addNewAddition,
   fetchListOfAdditions,
   fetchVoluntaryAdditions,
   updateAddition,
   deleteAddition,
+  deleteAllAddition,
 };
