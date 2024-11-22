@@ -59,6 +59,23 @@ const fetchOneVoluntary = async (req, res) => {
 
   return res.status(200).json({ oneVoluntary });
 };
+const fetchOneVoluntaryById = async (req, res) => {
+  const { _id } = req.query;
+  let oneVoluntary;
+
+  try {
+    oneVoluntary = await Voluntary.findOne({ _id });
+    console.log(oneVoluntary);
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (!oneVoluntary) {
+    return res.status(404).json({ message: "Sem Voluntários" });
+  }
+
+  return res.status(200).json({ oneVoluntary });
+};
 
 //UPDATE editar Voluntário
 const updateVoluntary = async (req, res) => {
@@ -113,6 +130,7 @@ module.exports = {
   addNewVoluntary,
   fetchListOfVoluntary,
   fetchOneVoluntary,
+  fetchOneVoluntaryById,
   updateVoluntary,
   deleteVoluntary,
 };
