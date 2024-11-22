@@ -55,6 +55,21 @@ const fetchVoluntaryAdditions = async (req, res) => {
   }
   return res.status(200).json({ myAdditions });
 };
+const fetchAdditionsbyWork = async (req, res) => {
+  const { id_work } = req.query;
+  let myAdditions;
+
+  try {
+    myAdditions = await Addition.find({ id_work });
+    console.log(myAdditions);
+  } catch (error) {
+    console.log(error);
+  }
+  if (!myAdditions) {
+    return res.status(404).json({ message: "Sem candidaturas" });
+  }
+  return res.status(200).json({ myAdditions });
+};
 
 //UPDATE editar inscrição
 const updateAddition = async (req, res) => {
@@ -136,6 +151,7 @@ module.exports = {
   addNewAddition,
   fetchListOfAdditions,
   fetchVoluntaryAdditions,
+  fetchAdditionsbyWork,
   updateAddition,
   deleteAddition,
   deleteAllAddition,

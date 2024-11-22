@@ -5,6 +5,7 @@ const {
   addNewAddition,
   fetchListOfAdditions,
   fetchVoluntaryAdditions,
+  fetchAdditionsbyWork,
   updateAddition,
   deleteAddition,
   deleteAllAddition,
@@ -15,6 +16,7 @@ const {
 additionRouter.post("/add", addNewAddition);
 additionRouter.get("/", fetchListOfAdditions);
 additionRouter.get("/myadditions", fetchVoluntaryAdditions);
+additionRouter.get("/workaddition", fetchAdditionsbyWork);
 additionRouter.put("/update/:id", updateAddition);
 additionRouter.delete("/delete/:id", deleteAddition);
 additionRouter.delete("/deletemany/:id_voluntary", deleteAllAddition);
